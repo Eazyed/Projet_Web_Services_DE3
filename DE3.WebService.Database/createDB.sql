@@ -8,6 +8,7 @@ CREATE TABLE users (
 	lastname VARCHAR(50) NOT NULL,
 	username VARCHAR(50) NOT NULL,
 	password VARCHAR(255) NOT NULL,
+	salt CHAR(8) NOT NULL,
 	role ENUM('manager','developer') NOT NULL
 );
 	
@@ -42,7 +43,7 @@ BEGIN
     VALUES(
         dt, 
         EXTRACT(MONTH FROM dt),
-        WEEK(dt)
+        WEEK(dt)+1
     );
 END$$
 
