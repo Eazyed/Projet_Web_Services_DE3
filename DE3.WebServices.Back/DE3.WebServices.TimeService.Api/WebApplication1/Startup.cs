@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication1.DataAccess.Interface;
+using WebApplication1.DataAccess.Model;
+using WebApplication1.Service;
 
 namespace WebApplication1
 {
@@ -26,7 +29,10 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<webservicedbContext>();
+            services.AddTransient<ITimeSlotRepository, TimeSlotRepository>();
+            services.AddTransient<ITimeSlotService, TimeSlotService>();
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
