@@ -33,34 +33,3 @@ CREATE TABLE TimeSlots (
 	FOREIGN KEY (IdProject) REFERENCES projects(IdProject),
 	FOREIGN KEY (ReferredDate) REFERENCES dates(ReferredDate)
 );
-
-
-DELIMITER $$
-
-CREATE PROCEDURE InsertDate(dt DATE)
-BEGIN
-    INSERT INTO Dates
-    VALUES(
-        dt, 
-        EXTRACT(MONTH FROM dt),
-        WEEK(dt)+1
-    );
-END$$
-
-CREATE PROCEDURE LoadDates(
-    startDate DATE, 
-    endDate DATE
-)
-BEGIN
-    DECLARE dt DATE DEFAULT startDate;
-
-    WHILE DATEDIFF(endDate, dt) > 0 DO
-        CALL InsertDate(dt);
-        SET dt = DATE_ADD(dt,INTERVAL 1 day);
-    END WHILE;
-
-END$$
-
-DELIMITER ;
-
-CALL LoadDates('2020-01-01', '2025-01-01');
