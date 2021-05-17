@@ -6,7 +6,7 @@ CREATE TABLE Users (
 	IdUser INT PRIMARY KEY AUTO_INCREMENT,
 	Firstname VARCHAR(50) NOT NULL,
 	Lastname VARCHAR(50) NOT NULL,
-	Username VARCHAR(50) NOT NULL,
+	Login VARCHAR(50) NOT NULL,
 	Password VARCHAR(255) NOT NULL,
 	Salt CHAR(8) NOT NULL,
 	Role ENUM('manager','developer') NOT NULL
@@ -16,13 +16,6 @@ CREATE TABLE Projects (
 	IdProject INT PRIMARY KEY AUTO_INCREMENT,
 	Label VARCHAR(50) NOT NULL
 );
-
-CREATE TABLE Dates (
-	`Date` DATE PRIMARY KEY,
-	MonthNum INT NOT NULL,
-	WeekNum INT NOT NULL
-);
-
 CREATE TABLE TimeSlots (
 	IdSlot INT PRIMARY KEY AUTO_INCREMENT,
 	HourCount INT NOT NULL,
@@ -31,5 +24,4 @@ CREATE TABLE TimeSlots (
 	ReferredDate DATE NOT NULL,
 	FOREIGN KEY (IdUser) REFERENCES users(id_user),
 	FOREIGN KEY (IdProject) REFERENCES projects(IdProject),
-	FOREIGN KEY (ReferredDate) REFERENCES dates(ReferredDate)
 );
