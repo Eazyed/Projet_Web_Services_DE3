@@ -23,5 +23,5 @@ CREATE TABLE TimeSlots (
 	IdProject INT NOT NULL,
 	ReferredDate DATE NOT NULL,
 	FOREIGN KEY (IdUser) REFERENCES users(id_user),
-	FOREIGN KEY (IdProject) REFERENCES projects(IdProject),
+	FOREIGN KEY (IdProject) REFERENCES projects(IdProject)
 );
