@@ -2,7 +2,7 @@
     <div class="home">
       <b-container class="mt-2">
         <div class="d-block text-right">
-          <label for="sb-inline">Week number</label>
+          <label for="sb-inline">Numéro de semaine</label>
           <b-form-spinbutton id="sb-inline" v-model="week" inline></b-form-spinbutton>
         </div>
         <!-- <b-table striped hover :items="items" :fields="fields"> -->
