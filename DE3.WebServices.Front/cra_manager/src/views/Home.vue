@@ -1,6 +1,10 @@
 <template>
     <div class="home">
       <b-container class="mt-2">
+        <div class="d-block text-right">
+          <label for="sb-inline">Week number</label>
+          <b-form-spinbutton id="sb-inline" v-model="week" inline></b-form-spinbutton>
+        </div>
         <!-- <b-table striped hover :items="items" :fields="fields"> -->
         <b-table striped hover :items="items">
           <template v-slot:cell(projet)="row">
@@ -27,7 +31,7 @@
           <template v-slot:cell(dimanche)="row">
             <b-form-input v-model="row.item.dimanche"/>
           </template>
-          <template slot="footer">
+          <!-- <template slot="footer">
             <td>Total</td>
             <td>{{ totalLundi }}</td>
             <td>{{ totalMardi }}</td>
@@ -36,20 +40,25 @@
             <td>{{ totalVendredi }}</td>
             <td>{{ totalSamedi }}</td>
             <td>{{ totalDimanche }}</td>
-          </template>
+          </template> -->
         </b-table>
         <table>
           <tr>
             <td>Total</td>
-            <td>{{ totalLundi }}</td>
-            <td>{{ totalMardi }}</td>
-            <td>{{ totalMercredi }}</td>
-            <td>{{ totalJeudi }}</td>
-            <td>{{ totalVendredi }}</td>
-            <td>{{ totalSamedi }}</td>
-            <td>{{ totalDimanche }}</td>
+            <td id="totalLundi">{{ totalLundi }}</td>
+            <td id="totalMardi">{{ totalMardi }}</td>
+            <td id="totalMercredi">{{ totalMercredi }}</td>
+            <td id="totalJeudi">{{ totalJeudi }}</td>
+            <td id="totalVendredi">{{ totalVendredi }}</td>
+            <td id="totalSamedi">{{ totalSamedi }}</td>
+            <td id="totalDimanche">{{ totalDimanche }}</td>
           </tr>
         </table>
+
+        <div class="d-block text-right">
+          <b-button type="submit" variant="primary">Valider</b-button>
+        </div>
+        <br>
         {{ items }}
       </b-container>
     </div>
@@ -76,12 +85,18 @@ table {
     text-indent: initial;
     border-spacing: 2px;
 }
+
+label{
+  margin:10px;
+}
+
 </style>
 
 <script>
   export default {
   data() {
     return {
+      week: 21,
       fields: { Projet: "projet", Lundi: "lundi", Mardi: "mardi", Mercredi: "mercredi", Jeudi: "jeudi", Vendredi: "vendredi", Samedi: "samedi", Dimanche: "dimanche" },
       items: [
         {
@@ -154,20 +169,24 @@ table {
     }
   }
   // methods: {
-  //   getTotal () {
-  //     console.log('method getting current total')
-  //     return this.regions.reduce((acc, cur) => acc + Number(cur.lundi), 0);
-  //   },
-  //   updateDatabase(){
-  //     console.log("update table with total: "+ this.totalCurrent());
+  //   checkTotal () {
+  //     console.log('check total of each column')
+  //     return this.items.reduce((acc, cur) => acc + Number(cur.lundi), 0);
   //   }
+    // getTotal () {
+    //   console.log('method getting current total')
+    //   return this.regions.reduce((acc, cur) => acc + Number(cur.lundi), 0);
+    // },
+    // updateDatabase(){
+    //   console.log("update table with total: "+ this.totalCurrent());
+    // }
   // }
       // };
     // }
   };
 
-  // let test =  data.items;
+  // var lundi = document.getElementById("totalLundi").textContent;
 
-  console.log("test");
+  // console.log(lundi);
 </script>
 
