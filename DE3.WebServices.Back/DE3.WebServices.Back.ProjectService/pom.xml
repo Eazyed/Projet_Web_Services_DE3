@@ -5,29 +5,18 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.1.RELEASE</version>
+		<version>2.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>org.rygn</groupId>
-	<artifactId>td_soap_de3</artifactId>
+	<groupId>DE3.WebServices.Back</groupId>
+	<artifactId>ProjectService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>td_soap_de3</name>
-	<description>SOAP WS project with Spring Boot</description>
-
+	<name>ProjectService</name>
+	<description>webservices project by Arthur, Mathias and Quentin</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
-
 	<dependencies>
-	<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-			<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
-		<dependency>
-		    <groupId>com.h2database</groupId>
-		    <artifactId>h2</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -41,21 +30,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/org.springframework.ws/spring-ws-test -->
 		<dependency>
-		    <groupId>org.springframework.ws</groupId>
-		    <artifactId>spring-ws-test</artifactId>
-		    <version>3.0.10.RELEASE</version>
-		    <scope>test</scope>
-		</dependency>				
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/wsdl4j/wsdl4j -->
 		<dependency>
@@ -70,7 +51,6 @@
 		    <artifactId>jaxb-runtime</artifactId>
 		    <version>2.3.3</version>
 		</dependency>
-		
 	</dependencies>
 
 	<build>
@@ -93,7 +73,7 @@
 				</executions>
 				<configuration>
 					<sources>
-						<source>${project.basedir}/src/main/resources/players.xsd</source>
+						<source>${project.basedir}/src/main/resources/projects.xsd</source>
 					</sources>
 				</configuration>
 			</plugin>

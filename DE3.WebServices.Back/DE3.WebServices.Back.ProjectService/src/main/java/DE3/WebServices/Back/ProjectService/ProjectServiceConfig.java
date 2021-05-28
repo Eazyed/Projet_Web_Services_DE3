@@ -1,4 +1,4 @@
-package tse.de3.td_de3_soap;
+package DE3.WebServices.Back.ProjectService;
 
 import javax.servlet.Servlet;
 
@@ -15,20 +15,20 @@ import org.springframework.xml.xsd.XsdSchema;
 
 @EnableWs
 @Configuration
-public class WebServiceConfig {
-	
+public class ProjectServiceConfig {
+
 	@Bean
-	public XsdSchema playersSchema() {
-		return new SimpleXsdSchema(new ClassPathResource("players.xsd"));
+	public XsdSchema countriesSchema() {
+		return new SimpleXsdSchema(new ClassPathResource("projects.xsd"));
 	}
 	
-	@Bean(name = "players")
-	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema playersSchema) {
+	@Bean(name = "projects")
+	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema projectsSchema) {
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-		wsdl11Definition.setPortTypeName("CountriesPort");
+		wsdl11Definition.setPortTypeName("ProjectsPort");
 		wsdl11Definition.setLocationUri("/ws");
 		wsdl11Definition.setTargetNamespace("http://spring.io/guides/gs-producing-web-service");
-		wsdl11Definition.setSchema(playersSchema);
+		wsdl11Definition.setSchema(projectsSchema);
 		return wsdl11Definition;
 	}
 	
