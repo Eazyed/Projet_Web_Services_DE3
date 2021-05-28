@@ -23,16 +23,22 @@ namespace WebApplication1.Service
         /// <returns></returns>
         public bool UpsertTimeSlot(TimeSlotDto timeSlotDto)
         {
+            // Vérification Server-Side
             if (CheckDto(timeSlotDto))
             {
                 try
                 {
+                    // Récupération des TimeSlots de l'utilisateur pour la date en base
                     var timeslots = timeSlotRepository.GetByUserId(timeSlotDto.UserId).Where(x => x.ReferredDate.Date == timeSlotDto.Date.Date);
+                    // Si on en trouve
                     if (timeslots.Any())
                     {
+                        // On les supprime
                         timeSlotRepository.DeleteTimeSlots(timeslots);
                     }
+                    // Conversion DTO -> Entity
                     timeslots = CreateTimeSlots(timeSlotDto);
+                    // Ajout en base
                     this.timeSlotRepository.AddRange(timeslots);
                 }
                 catch
@@ -65,7 +71,7 @@ namespace WebApplication1.Service
                     countByProject.Add(slot.IdProject, slot.HourCount);
                 }
             }
-            return new TimeSlotDto() { Date = date.Date, UserId = userId, TimeSlots = countByProject };
+            return new TimeSlotDto() { Date = date.Date, UserId = userId, TimeByProject = countByProject };
         }
 
 
@@ -77,7 +83,7 @@ namespace WebApplication1.Service
         private IEnumerable<Timeslot> CreateTimeSlots(TimeSlotDto timeSlotDto)
         {
             var timeSlots = new List<Timeslot>();
-            foreach (var slot in timeSlotDto.TimeSlots)
+            foreach (var slot in timeSlotDto.TimeByProject)
             {
                 timeSlots.Add(new Timeslot()
                 {
@@ -98,12 +104,14 @@ namespace WebApplication1.Service
         private bool CheckDto(TimeSlotDto timeSlotDto)
         {
             var count = 0;
-            foreach (var pair in timeSlotDto.TimeSlots)
+            foreach (var pair in timeSlotDto.TimeByProject)
             {
                 count += pair.Value;
             }
+            // Vérification : La somme des heures doit-être égale à 8
             if (count == 8)
             {
+                // Vérification : La date du jour ne doit pas être du week-end
                 if (timeSlotDto.Date.Date.DayOfWeek == DayOfWeek.Sunday || timeSlotDto.Date.Date.DayOfWeek == DayOfWeek.Saturday)
                 {
                     return false;

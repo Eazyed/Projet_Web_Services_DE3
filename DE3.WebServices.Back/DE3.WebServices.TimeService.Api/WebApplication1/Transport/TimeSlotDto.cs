@@ -20,6 +20,6 @@ namespace WebApplication1.Transport
         /// <summary>
         /// Différents créneaux
         /// </summary>
-        public Dictionary<int,int> TimeSlots { get; set; }
+        public Dictionary<int,int> TimeByProject { get; set; }
     }
 }
