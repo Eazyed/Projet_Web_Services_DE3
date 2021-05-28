@@ -28,6 +28,8 @@ npm run serve
 ```
 Ouvrez [http://localhost:3454](http://localhost:3454) sur votre navigateur.
 
+---
+
 ## Configuration
 
 Le port est configurable dans le fichier **vue.config.js**
