@@ -10,6 +10,8 @@ CREATE TABLE Users (
 	Password VARCHAR(255) NOT NULL,
 	Salt CHAR(8) NOT NULL,
 	Role ENUM('manager','developer') NOT NULL
+	--,IdManager INT,
+	--FOREIGN KEY (IdManager) REFERENCES users(IdUser)
 );
 	
 CREATE TABLE Projects (
