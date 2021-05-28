@@ -1,0 +1,37 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+           targetNamespace="http://spring.io/guides/gs-producing-web-service" elementFormDefault="qualified">
+
+    <xs:element name="authenticateUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="login" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="authenticateUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="tns:user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="user">
+        <xs:sequence>
+            <xs:element name="idUser" type="xs:long"/>
+            <xs:element name="firstname" type="xs:string"/>
+            <xs:element name="lastname" type="xs:string"/>
+            <xs:element name="login" type="xs:string"/>
+            <xs:element name="role" type="tns:role"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="role">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="manager"/>
+            <xs:enumeration value="developer"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

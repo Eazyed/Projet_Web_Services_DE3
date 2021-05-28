@@ -32,6 +32,12 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/wsdl4j/wsdl4j -->
 		<dependency>
 		    <groupId>wsdl4j</groupId>
@@ -58,18 +64,17 @@
 				<artifactId>jaxb2-maven-plugin</artifactId>
 				<version>2.5.0</version>
 				<executions>
-<!-- 					<execution> -->
-<!-- 						<id>xjc</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>xjc</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
 				</executions>
 				<configuration>
-<!-- 					<sources> -->
-<!-- 						<source>${project.basedir}/src/main/resources/players.xsd</source> -->
-<!-- 						<source>${project.basedir}/src/main/resources/teams.xsd</source> -->
-<!-- 					</sources> -->
+					<sources>
+						<source>${project.basedir}/src/main/resources/users.xsd</source>
+					</sources>
 				</configuration>
 			</plugin>
 		</plugins>
